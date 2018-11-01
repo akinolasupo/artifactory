@@ -36,22 +36,24 @@ serviceAccount:
   ## The name of the ServiceAccount to use.
   ## If not set and create is true, a name is generated using the fullname template
   name:
-
+  
 ingress:
-  enabled: false
+  enabled: true
   defaultBackend:
-    enabled: true
-  # Used to create an Ingress record.
+    enabled: false
   hosts:
-    - artifactory.domain.example
+    - myhost.example.com
   annotations:
-  # kubernetes.io/ingress.class: nginx
-  # kubernetes.io/tls-acme: "true"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    ingress.kubernetes.io/proxy-body-size: "0"
+    ingress.kubernetes.io/proxy-read-timeout: "600"
+    ingress.kubernetes.io/proxy-send-timeout: "600"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/(v2)/token /artifactory/api/docker/null/v2/token;
+      rewrite ^/(v2)/([^\/]*)/(.*) /artifactory/api/docker/$2/$1/$3;
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
   tls:
-  # Secrets must be manually created in the namespace.
-  # - secretName: chart-example-tls
-  #   hosts:
-  #     - artifactory.domain.example
 
 # Artifactory
 artifactory:
