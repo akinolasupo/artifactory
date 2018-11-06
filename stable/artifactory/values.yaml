@@ -38,7 +38,7 @@ serviceAccount:
   name:
   
 ingress:
-  enabled: true
+  enabled: false
   defaultBackend:
     enabled: false
   hosts:
@@ -163,7 +163,7 @@ nginx:
   uid: 104
   gid: 107
   image:
-    repository: "docker.bintray.io/jfrog/nginx-artifactory-pro"
+    repository: "ivy001/artifactory-nginx"
     # Note that by default we use appVersion to get image tag
     # version:
     pullPolicy: IfNotPresent
