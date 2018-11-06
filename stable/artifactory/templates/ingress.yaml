@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enabled -}}
 {{- $serviceName := include "artifactory.nginx.fullname" . -}}
-{{- $servicePort := include "artifactory.nginx.externalport" -}}
+{{- $servicePort := include "artifactory.nginx.externalport" . -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
