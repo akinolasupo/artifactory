@@ -17,7 +17,7 @@ spec:
   {{- if .Values.ingress.defaultBackend.enabled }}
   backend:
     serviceName: {{ $serviceName }}
-    servicePort: {{ $servicePort }}
+    servicePort: {{ .Values.nginx.externalPort }}
   {{- end -}}
 {{- if .Values.ingress.hosts }}
   rules:
