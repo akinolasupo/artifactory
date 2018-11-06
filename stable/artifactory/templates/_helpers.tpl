@@ -32,7 +32,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{- define "artifactory.nginx.externalport" -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
 {{- printf "%s" .Values.nginx.externalPort -}}
 {{- end -}}
 
