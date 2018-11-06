@@ -31,6 +31,12 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- printf "%s-%s-%s" .Release.Name $name .Values.nginx.name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
+{{- define "artifactory.nginx.externalport" -}}
+{{- $name := default .Chart.Name .Values.nameOverride -}}
+{{- printf "%s" .Values.nginx.externalPort -}}
+{{- end -}}
+
+ 
 {{/*
 Create the name of the service account to use
 */}}
